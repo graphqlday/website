@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/layout';
 import { Row, Column } from 'hedron';
-import { Link } from 'gatsby';
+import { Link, useStaticQuery } from 'gatsby';
+import SEO from "../components/seo"
 
 import Speakers from '../components/Bodensee/speakers';
 import Schedule from '../components/Bodensee/schedule';
@@ -94,8 +95,36 @@ const PageWrapper = styled.div`
 	padding: 64px 32px;
 `;
 
-const BodenseePage = () => (
-	<Layout>
+const BodenseePage = () => {
+
+	const { gcms: {events} } = useStaticQuery(
+		graphql`
+		  query {
+			  gcms {
+			events(where: {
+			  title_contains: "Bodensee"
+			}) {
+			  twitterCard {
+			  url
+			}
+			  ogCard {
+				url
+			  }
+			}
+		  }
+		}
+		`
+	  )
+
+	  
+	
+	return (<Layout>
+		<SEO
+			title="Bodensee, September 6th"
+			description="GraphQL Day Bodensee is a single-day conference focusing on adopting GraphQL and getting the most out of it in production."
+			ogTwitterImage={events[0].twitterCard.url}
+			ogSiteImage={events[0].ogCard.url}
+			/>
 		<BG>
 			<Hero>
 				<Row className="row">
@@ -141,6 +170,6 @@ const BodenseePage = () => (
 			<BodenseeSponsors />
 		</PageWrapper>
 	</Layout>
-);
+)};
 
 export default BodenseePage;

@@ -1,6 +1,6 @@
 module.exports = {
 	siteMetadata: {
-		title: `GraphQL Conf - Bondsee`,
+		title: `GraphQL Day`,
 		description: `---`,
 		author: `@graphcms`
 	},

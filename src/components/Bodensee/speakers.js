@@ -98,8 +98,8 @@ export default (props, data) => (
 			<SpeakerSection>
 				<h2>Speakers</h2>
 				<Row>
-					{data.gcms.bodenseeSpeakers.map(speaker => (
-						<Column lg={4} md={6} sm={12}>
+					{data.gcms.bodenseeSpeakers.map((speaker, index) => (
+						<Column lg={4} md={6} sm={12} key={index}>
 							<SpeakerCard headshot={speaker.headshot.url}>
 								<div
 									background={speaker.headshot.url}

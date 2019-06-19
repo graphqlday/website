@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/layout';
+import SEO from "../components/seo"
 // import { Row, Column } from 'hedron';
 // import { Link } from 'gatsby';
 
@@ -15,6 +16,7 @@ const PageWrapper = styled.div`
 
 const TorontoPage = () => (
 	<Layout>
+	<SEO title="Toronto" />
 		<PageWrapper>
 			<Hero />
 			<TorontoSpeakers />

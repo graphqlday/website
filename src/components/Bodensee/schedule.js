@@ -56,7 +56,7 @@ const Card = styled.div`
 
 	img {
 		margin: 0 20px;
-		height: 45px;
+		/* height: 45px; */
 		width: 45px;
 		clip-path: circle(50% at 50% 50%);
 	}
@@ -119,8 +119,8 @@ export default ({ data }) => (
 				</Title>
 				<ScheduleRow>
 					<Column lg={6} md={12}>
-						{data.gcms.beforeNoon.map(schedule => (
-							<Schedule>
+						{data.gcms.beforeNoon.map((schedule, index) => (
+							<Schedule key={index}>
 								<Time dateTime={schedule.time}>
 									{dateFormat(new Date(schedule.time[0]), 'HH:MM')}
 								</Time>
@@ -139,8 +139,8 @@ export default ({ data }) => (
 						))}
 					</Column>
 					<Column lg={6} md={12}>
-						{data.gcms.afterNoon.map(schedule => (
-							<Schedule>
+						{data.gcms.afterNoon.map((schedule, index) => (
+							<Schedule key={index}>
 								<Time dateTime={schedule.time}>
 									{dateFormat(new Date(schedule.time[0]), 'HH:MM')}
 								</Time>
