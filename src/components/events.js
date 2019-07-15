@@ -42,7 +42,7 @@ const EventSection = ({ children }) => (
 		<h2 className="pink" id="upcoming-events">
 			Upcoming events
 		</h2>
-		<a
+		{false && <a
 			href="https://www.graphqlconf.org"
 			alt="GraphQL conference main website"
 			target="_blank"
@@ -54,7 +54,7 @@ const EventSection = ({ children }) => (
 				confTitle="GraphQL Conf Berlin"
 				confDate="20th-21st June, 2019"
 			/>
-		</a>
+		</a>}
 		<Link to="/bodensee" alt="GraphQL day bodensee">
 			<FutureCard
 				image={germany}

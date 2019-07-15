@@ -59,7 +59,12 @@ export default () => (
       <Section>
         <section>
           <h2>Organized by</h2>
-          <img src={data.gcms.graphcms.logo.url} alt="OKgrow logo" />
+          <img style={{maxWidth: 250}} src={data.gcms.graphcms.logo.url} alt="OKgrow logo"
+          className="padding" />
+          <img
+            src={data.gcms.honeypot.logo.url}
+            alt="honeypot logo"
+          />
         </section>
         <section>
           <h2>Gold Sponsors</h2>
@@ -67,11 +72,6 @@ export default () => (
         </section>
         <section>
           <h2>Community Sponsors</h2>
-          <img
-            src={data.gcms.honeypot.logo.url}
-            alt="honeypot logo"
-            className="padding"
-          />
           <img src={data.gcms.prisma.logo.url} alt="prisma logo" />
         </section>
       </Section>

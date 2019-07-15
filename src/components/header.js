@@ -77,7 +77,7 @@ const Header = ({ children }) => (
         <Link to="/#upcoming-events" alt="" className="navLink">
           Events
         </Link>
-        <a
+        {false && <a
           href="https://www.graphqlconf.org"
           alt=""
           target="_blank"
@@ -88,7 +88,7 @@ const Header = ({ children }) => (
           <span role="img" aria-label="tada emoji">
             🎉
           </span>
-        </a>
+        </a>}
         {children}
       </NavLinks>
     </Nav>
