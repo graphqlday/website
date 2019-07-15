@@ -170,7 +170,7 @@ const BodenseePage = () => {
 					<Column lg={6} sm={12} className="column">
 						<div>
 							<h1>Join us at GraphQL Day Bodensee!</h1>
-							<h2>September 6th in beautiful Kosntanz, Germany</h2>
+							<h2>September 6th in beautiful Konstanz, Germany</h2>
 							<p className="subheader">
 								GraphQL Day Bodensee is a single-day conference focusing on
 								adopting GraphQL and getting the most out of it in production.
@@ -216,13 +216,48 @@ const BodenseePage = () => {
 			<p>You can reach any major city around the lake easily with either train or ferry.</p>
 			
 			<p><ul>
-			<li><strong>Kreuzlingen (CH)</strong><strong>3 Minutes</strong></li>
-			<li><strong>Allensbach</strong><strong>10 Minutes</strong></li>
-			<li><strong>Radolfzell</strong><strong>15 Minutes</strong></li>
-			<li><strong>Singen</strong><strong>30 Minutes</strong></li>
-			<li><strong>Meersburg (Ferry)</strong><strong>35 Minutes</strong></li>
-			<li><strong>Schaffhausen (CH)</strong><strong>49 Minutes</strong></li>
-			<li><strong>Überlingen</strong><strong>1 Hour</strong></li>
+			<li>
+				<strong>
+					<a href="https://www.google.com/maps/search/hotels+in+Kreuzlingen,+Switzerland/@47.6574796,9.1524585,14z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Kreuzlingen (CH)</a>
+				</strong>
+				<strong>3 Minutes</strong>
+			</li>
+			<li>
+				<strong>
+					<a href="https://www.google.com/maps/search/hotels+in+Allensbach,+Germany/@47.7205673,9.0619297,15.02z/data=!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Allensbach</a>
+				</strong>
+				<strong>10 Minutes</strong>
+			</li>
+			<li>
+				<strong>
+					<a href="https://www.google.com/maps/search/hotels+in+Radolfzell+am+Bodensee/@47.752138,8.9393425,13z/data=!4m9!2m8!5m6!5m4!1s2019-09-05!2i2!4m1!1i1!10e1!6e3">Radolfzell</a>
+				</strong>
+				<strong>15 Minutes</strong>
+			</li>
+			<li>
+				<strong>
+					<a href="https://www.google.com/maps/search/hotels+in+Singen/@47.7607077,8.8457983,13.26z/data=!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Singen</a>
+				</strong>
+				<strong>30 Minutes</strong>
+			</li>
+			<li>
+				<strong>
+					<a href="https://www.google.com/maps/search/hotels+in+Meersburg/@47.6866527,9.2731655,14z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Meersburg (Ferry)</a>
+				</strong>
+				<strong>35 Minutes</strong>
+			</li>
+			<li>
+				<strong>
+					<a href="https://www.google.com/maps/search/hotels+in+Schaffhausen,+Switzerland/@47.7011403,8.6501567,13z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Schaffhausen (CH)</a>
+				</strong>
+				<strong>49 Minutes</strong>
+			</li>
+			<li>
+				<strong>
+					<a href="https://www.google.com/maps/search/hotels+in+%C3%9Cberlingen/@47.7784625,9.1544277,13z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Überlingen</a>
+				</strong>
+				<strong>1 Hour</strong>
+			</li>
 			</ul></p>
 			</VenueSection>
 			<BodenseeSponsors />
