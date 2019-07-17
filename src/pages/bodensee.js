@@ -9,6 +9,8 @@ import Speakers from '../components/Bodensee/speakers';
 import Schedule from '../components/Bodensee/schedule';
 import BodenseeSponsors from '../components/Bodensee/sponsors';
 
+import konstanzImage from '../pages/static/konstanz_image.jpg'
+
 import bodensee from './static/bodensee.png';
 
 const BG = styled.div`
@@ -99,6 +101,8 @@ const VenueSection = styled.section`
 	max-width: 1140px;
 	margin: 0 auto;
 	margin-bottom: 64px;
+	display: flex;
+	flex-wrap: wrap;
 
 	h2 {
 		color: rgb(219, 63, 116);
@@ -118,15 +122,19 @@ const VenueSection = styled.section`
 		line-height: 1.75;
 		color: #656565;
 		margin-bottom: 32px;
-		max-width: 35rem;
 	}
 	li {
 		display: flex;
 		justify-content: space-between;
-		margin: 0;
-		max-width: 350px;
 		margin-bottom: 10px;
 		border-bottom: 1px dashed lightgray;
+	}
+
+	.box {
+		flex: 1 0 30rem;
+		box-sizing: border-box;
+		padding: 1rem;
+		margin-bottom: 3rem;
 	}
 `;
 
@@ -208,57 +216,62 @@ const BodenseePage = () => {
 			<Speakers />
 			<Schedule />
 			<VenueSection>
-			<h2>The Venue</h2>
-			<p>The event will be held in the beautiful town of Konstanz in southern Germany, right on the shores of Lake Constance (the Bodensee). With ancient, roman ruins, a towering cathedral right next to the conference center and a bustling old-town filled with both modern and boutique shops, <a href="https://www.konstanz-tourismus.de/"> there's something for everyone in this trendy city.</a> We will be in the <a href="https://www.konstanz.de/start/kultur+_+freizeit/kulturamt.html">Kulturzentrum, Konstanz</a> which is in the heart of the old-town.</p>
-
-			<h2>Welcome to the Lake, it's Summer!</h2>
+			<section className="box">
+			<h2>The Venue <br/>Kulturzentrum, Konstanz</h2>
+			<p>The event will be held in the beautiful town of Konstanz in southern Germany, right on the shores of Lake Constance (the Bodensee). With ancient, Roman ruins, a towering cathedral right next to the conference center and a bustling old town filled with both modern and boutique shops, <a target="_blank" href="https://www.konstanz-tourismus.de/"> there's something for everyone in this trendy city.</a> We will be in the <a target="_blank" href="https://www.konstanz.de/start/kultur+_+freizeit/kulturamt.html">Kulturzentrum, Konstanz</a> which is in the heart of the old town.</p>
+			
+			<img src={konstanzImage} width="100%" />
+			</section>
+			<section className="box">
+			<h2>Welcome to the Lake <br/>it's Summer!</h2>
 			<p>For those who aren't familiar with the Bodensee region, it's popular, so hotels can go quick! But not to worry, the commute system (yes, planes, trains and automobiles) will get you everywhere you need to go. The closest major airport is Zürich, around 1 hour to the south of the event.</p>
 			<p>You can reach any major city around the lake easily with either train or ferry.</p>
 			
 			<p><ul>
 			<li>
 				<strong>
-					<a href="https://www.google.com/maps/search/hotels+in+Kreuzlingen,+Switzerland/@47.6574796,9.1524585,14z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Kreuzlingen (CH)</a>
+					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Kreuzlingen,+Switzerland/@47.6574796,9.1524585,14z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Kreuzlingen (CH)</a>
 				</strong>
 				<strong>3 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a href="https://www.google.com/maps/search/hotels+in+Allensbach,+Germany/@47.7205673,9.0619297,15.02z/data=!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Allensbach</a>
+					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Allensbach,+Germany/@47.7205673,9.0619297,15.02z/data=!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Allensbach</a>
 				</strong>
 				<strong>10 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a href="https://www.google.com/maps/search/hotels+in+Radolfzell+am+Bodensee/@47.752138,8.9393425,13z/data=!4m9!2m8!5m6!5m4!1s2019-09-05!2i2!4m1!1i1!10e1!6e3">Radolfzell</a>
+					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Radolfzell+am+Bodensee/@47.752138,8.9393425,13z/data=!4m9!2m8!5m6!5m4!1s2019-09-05!2i2!4m1!1i1!10e1!6e3">Radolfzell</a>
 				</strong>
 				<strong>15 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a href="https://www.google.com/maps/search/hotels+in+Singen/@47.7607077,8.8457983,13.26z/data=!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Singen</a>
+					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Singen/@47.7607077,8.8457983,13.26z/data=!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Singen</a>
 				</strong>
 				<strong>30 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a href="https://www.google.com/maps/search/hotels+in+Meersburg/@47.6866527,9.2731655,14z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Meersburg (Ferry)</a>
+					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Meersburg/@47.6866527,9.2731655,14z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Meersburg (Ferry)</a>
 				</strong>
 				<strong>35 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a href="https://www.google.com/maps/search/hotels+in+Schaffhausen,+Switzerland/@47.7011403,8.6501567,13z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Schaffhausen (CH)</a>
+					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Schaffhausen,+Switzerland/@47.7011403,8.6501567,13z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Schaffhausen (CH)</a>
 				</strong>
 				<strong>49 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a href="https://www.google.com/maps/search/hotels+in+%C3%9Cberlingen/@47.7784625,9.1544277,13z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Überlingen</a>
+					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+%C3%9Cberlingen/@47.7784625,9.1544277,13z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Überlingen</a>
 				</strong>
 				<strong>1 Hour</strong>
 			</li>
 			</ul></p>
+			</section>
 			</VenueSection>
 			<BodenseeSponsors />
 		</PageWrapper>
