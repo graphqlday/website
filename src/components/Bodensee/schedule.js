@@ -99,28 +99,11 @@ const Card = styled.div`
 	}
 `;
 
-export default ({ data }) => (
-	<StaticQuery
-		query={graphql`
-			query {
-				gcms {
-					bodenseeSchedules(orderBy: time_ASC) {
-						time
-						icon {
-							url
-						}
-						item
-						subitem
-					}
-				}
-			}
-		`}
-		render={data => {
+export default ({ schedule }) => {
 			const split = 9
-			const firstHalf = [...data.gcms.bodenseeSchedules].slice(0,split)
-			const lastHalf = [...data.gcms.bodenseeSchedules].slice(split)
-
-			console.log(firstHalf)
+			const firstHalf = [...schedule].slice(0,split)
+			const lastHalf = [...schedule].slice(split)
+			
 			return (
 			<React.Fragment>
 				<Title>
@@ -133,18 +116,20 @@ export default ({ data }) => (
 				<Column lg={6} md={12}>
 				{firstHalf.map((schedule, index) => (
 					<Schedule key={index}>
-						<Time dateTime={schedule.time}>
-							{dateFormat(new Date(schedule.time), 'HH:MM')}
+						<Time dateTime={schedule.start}>
+							{dateFormat(new Date(schedule.start), 'HH:MM')}
 						</Time>
 						<Card>
 							{schedule.icon ? (
 								<img src={schedule.icon.url} alt="schedule icon" />
 							) : (
-								<div className="placeholder" />
+								<img src={schedule.talk.speaker[0].headshot.url} alt="schedule icon" />
 							)}
 							<div className="content">
-								<h3>{schedule.item}</h3>
-								<p className="subitem">{schedule.subitem}</p>
+								{schedule.title
+									? (<h3>{schedule.title}</h3>)
+									: (<h3>{schedule.talk.speaker.name}</h3>)}
+								{schedule.talk  && (<p>{schedule.talk.title}</p>)}
 							</div>
 						</Card>
 					</Schedule>
@@ -153,18 +138,20 @@ export default ({ data }) => (
 			<Column lg={6} md={12}>
 				{lastHalf.map((schedule, index) => (
 					<Schedule key={index}>
-						<Time dateTime={schedule.time}>
-							{dateFormat(new Date(schedule.time), 'HH:MM')}
+						<Time dateTime={schedule.start}>
+							{dateFormat(new Date(schedule.start), 'HH:MM')}
 						</Time>
 						<Card>
 							{schedule.icon ? (
 								<img src={schedule.icon.url} alt="schedule icon" />
 							) : (
-								<div className="placeholder" />
+								<img src={schedule.talk.speaker[0].headshot.url} alt="schedule icon" />
 							)}
 							<div className="content">
-								<h3>{schedule.item}</h3>
-								<p className="subitem">{schedule.subitem}</p>
+								{schedule.title
+									? (<h3>{schedule.title}</h3>)
+									: (<h3>{schedule.talk.speaker.name}</h3>)}
+								{schedule.talk  && (<p>{schedule.talk.title}</p>)}
 							</div>
 						</Card>
 					</Schedule>
@@ -172,6 +159,4 @@ export default ({ data }) => (
 			</Column>
 				</ScheduleRow>
 			</React.Fragment>
-		)}}
-	/>
-);
+)};

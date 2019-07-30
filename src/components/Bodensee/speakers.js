@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Row, Column } from 'hedron';
-import { StaticQuery, graphql } from 'gatsby';
 
 import gh from '../../pages/static/github.png';
 import tw from '../../pages/static/twitter.png';
@@ -77,28 +76,11 @@ const SpeakerCard = styled.div`
 	}
 `;
 
-export default (props, data) => (
-	<StaticQuery
-		query={graphql`
-			query {
-				gcms {
-					bodenseeSpeakers {
-						headshot {
-							url
-						}
-						name
-						position
-						githubLink
-						twitterLink
-					}
-				}
-			}
-		`}
-		render={data => (
-			<SpeakerSection>
+export default ({speakers}) => (
+	<SpeakerSection>
 				<h2>Speakers</h2>
 				<Row>
-					{data.gcms.bodenseeSpeakers.map((speaker, index) => (
+					{speakers.map((speaker, index) => (
 						<Column lg={4} md={6} sm={12} key={index}>
 							<SpeakerCard headshot={speaker.headshot.url}>
 								<div
@@ -131,6 +113,4 @@ export default (props, data) => (
 					))}
 				</Row>
 			</SpeakerSection>
-		)}
-	/>
 );

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Layout from '../components/layout';
 import { Row, Column } from 'hedron';
-import { Link, useStaticQuery } from 'gatsby';
+import { Link, useStaticQuery, graphql } from 'gatsby';
 import SEO from "../components/seo"
 
 import Speakers from '../components/Bodensee/speakers';
@@ -144,33 +144,57 @@ const PageWrapper = styled.div`
 
 const BodenseePage = () => {
 
-	const { gcms: {events} } = useStaticQuery(
+	const {gcms} = useStaticQuery(
 		graphql`
-		  query {
-			  gcms {
-			events(where: {
-			  title_contains: "Bodensee"
-			}) {
-			  twitterCard {
-			  url
-			}
-			  ogCard {
-				url
+		query {
+			gcms {
+			  conferences: conferences(where: {name_contains: "Bodensee"}) {
+				events(first: 1) {
+				  twitterCard {
+					url
+				  }
+				  ogCard {
+					url
+				  }
+				  schedule: scheduleEntries(orderBy: start_ASC) {
+					start
+					title
+					icon {
+					  url
+					}
+					title
+					talk {
+					  title
+					  speaker {
+						headshot {
+						  url
+						}
+					  }
+					}
+				  }
+				}
+			  }
+			  speakers: speakers(where: {talks_some: {scheduleEntries_every: {event: {conference: {name_contains: "Bodensee"}}}}}) {
+				name
+				position
+				githubLink
+				twitterLink
+				headshot {
+				  url
+				}
 			  }
 			}
 		  }
-		}
+		  
 		`
 	  )
-
-	  
-	
+		  console.log(gcms)
 	return (<Layout>
 		<SEO
 			title="Bodensee, September 6th"
 			description="GraphQL Day Bodensee is a single-day conference focusing on adopting GraphQL and getting the most out of it in production."
-			ogTwitterImage={events[0].twitterCard.url}
-			ogSiteImage={events[0].ogCard.url}
+			ogTwitterImage={gcms.conferences[0].events[0].twitterCard.url}
+			ogSiteImage={gcms.conferences[0].events[0].ogCard.url}
 			/>
 		<BG>
 			<Hero>
@@ -213,8 +237,8 @@ const BodenseePage = () => {
 			</Hero>
 		</BG>
 		<PageWrapper>
-			<Speakers />
-			<Schedule />
+			<Speakers speakers={gcms.speakers} />
+			<Schedule schedule={gcms.conferences[0].events[0].schedule} />
 			<VenueSection>
 			<section className="box">
 			<h2>The Venue <br/>Kulturzentrum, Konstanz</h2>
