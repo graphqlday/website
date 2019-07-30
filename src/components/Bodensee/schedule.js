@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Row, Column } from 'hedron';
 //import Img from 'gatsby-image';
-import { graphql, StaticQuery } from 'gatsby';
 import dateFormat from 'dateformat';
 
 const CardGrid = styled.div`
@@ -128,7 +127,7 @@ export default ({ schedule }) => {
 							<div className="content">
 								{schedule.title
 									? (<h3>{schedule.title}</h3>)
-									: (<h3>{schedule.talk.speaker.name}</h3>)}
+									: (<h3>{schedule.talk.speaker[0].name}</h3>)}
 								{schedule.talk  && (<p>{schedule.talk.title}</p>)}
 							</div>
 						</Card>
@@ -150,7 +149,7 @@ export default ({ schedule }) => {
 							<div className="content">
 								{schedule.title
 									? (<h3>{schedule.title}</h3>)
-									: (<h3>{schedule.talk.speaker.name}</h3>)}
+									: (<h3>{schedule.talk.speaker[0].name}</h3>)}
 								{schedule.talk  && (<p>{schedule.talk.title}</p>)}
 							</div>
 						</Card>

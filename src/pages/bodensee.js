@@ -146,7 +146,16 @@ const BodenseePage = () => {
 
 	const {gcms} = useStaticQuery(
 		graphql`
-		query {
+		fragment Sponsor on GraphCMS_Sponsorship {
+			sponsorLevel
+			sponsor {
+			  logo {
+				url
+				
+			  }
+			}
+		  }
+		  {
 			gcms {
 			  conferences: conferences(where: {name_contains: "Bodensee"}) {
 				events(first: 1) {
@@ -156,6 +165,41 @@ const BodenseePage = () => {
 				  ogCard {
 					url
 				  }
+				  organizer: sponsorships(where: {
+					sponsorLevel: Organizer
+				  }) {
+					...Sponsor
+				  }
+				  goldSponsors: sponsorships(where: {
+					sponsorLevel: Gold
+				  }) {
+					...Sponsor
+				  }
+				  
+				  bronzeSponsors: sponsorships(where: {
+					sponsorLevel: Bronze
+				  }) {
+					...Sponsor
+				  }
+				  
+				  commSponsors: sponsorships(where: {
+					sponsorLevel: Community
+				  }) {
+					...Sponsor
+				  }
+				  
+				  giveawaySponsors: sponsorships(where: {
+					sponsorLevel: Giveaway
+				  }) {
+					...Sponsor
+				  }
+				  
+				  silverSponsors: sponsorships(where: {
+					sponsorLevel: Silver
+				  }) {
+					...Sponsor
+				  }
+				  
 				  schedule: scheduleEntries(orderBy: start_ASC) {
 					start
 					title
@@ -166,6 +210,7 @@ const BodenseePage = () => {
 					talk {
 					  title
 					  speaker {
+						  name
 						headshot {
 						  url
 						}
@@ -188,13 +233,13 @@ const BodenseePage = () => {
 		  
 		`
 	  )
-		  console.log(gcms)
+	const event = gcms.conferences[0].events[0]
 	return (<Layout>
 		<SEO
 			title="Bodensee, September 6th"
 			description="GraphQL Day Bodensee is a single-day conference focusing on adopting GraphQL and getting the most out of it in production."
-			ogTwitterImage={gcms.conferences[0].events[0].twitterCard.url}
-			ogSiteImage={gcms.conferences[0].events[0].ogCard.url}
+			ogTwitterImage={event.twitterCard.url}
+			ogSiteImage={event.ogCard.url}
 			/>
 		<BG>
 			<Hero>
@@ -212,7 +257,7 @@ const BodenseePage = () => {
 							<div className="buttons">
 								<a
 									href="https://www.eventbrite.ie/e/graphql-day-bodensee-tickets-60886463050"
-									target="_blank"
+									target="_blank" rel="noopener noreferrer"
 									rel="noopener noreferrer"
 								>
 									<button className="dark">Get tickets</button>
@@ -238,11 +283,11 @@ const BodenseePage = () => {
 		</BG>
 		<PageWrapper>
 			<Speakers speakers={gcms.speakers} />
-			<Schedule schedule={gcms.conferences[0].events[0].schedule} />
+			<Schedule schedule={event.schedule} />
 			<VenueSection>
 			<section className="box">
 			<h2>The Venue <br/>Kulturzentrum, Konstanz</h2>
-			<p>The event will be held in the beautiful town of Konstanz in southern Germany, right on the shores of Lake Constance (the Bodensee). With ancient, Roman ruins, a towering cathedral right next to the conference center and a bustling old town filled with both modern and boutique shops, <a target="_blank" href="https://www.konstanz-tourismus.de/"> there's something for everyone in this trendy city.</a> We will be in the <a target="_blank" href="https://www.konstanz.de/start/kultur+_+freizeit/kulturamt.html">Kulturzentrum, Konstanz</a> which is in the heart of the old town.</p>
+			<p>The event will be held in the beautiful town of Konstanz in southern Germany, right on the shores of Lake Constance (the Bodensee). With ancient, Roman ruins, a towering cathedral right next to the conference center and a bustling old town filled with both modern and boutique shops, <a target="_blank" rel="noopener noreferrer" href="https://www.konstanz-tourismus.de/"> there's something for everyone in this trendy city.</a> We will be in the <a target="_blank" rel="noopener noreferrer" href="https://www.konstanz.de/start/kultur+_+freizeit/kulturamt.html">Kulturzentrum, Konstanz</a> which is in the heart of the old town.</p>
 			
 			<img src={konstanzImage} width="100%" />
 			</section>
@@ -254,50 +299,50 @@ const BodenseePage = () => {
 			<p><ul>
 			<li>
 				<strong>
-					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Kreuzlingen,+Switzerland/@47.6574796,9.1524585,14z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Kreuzlingen (CH)</a>
+					<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/hotels+in+Kreuzlingen,+Switzerland/@47.6574796,9.1524585,14z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Kreuzlingen (CH)</a>
 				</strong>
 				<strong>3 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Allensbach,+Germany/@47.7205673,9.0619297,15.02z/data=!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Allensbach</a>
+					<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/hotels+in+Allensbach,+Germany/@47.7205673,9.0619297,15.02z/data=!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Allensbach</a>
 				</strong>
 				<strong>10 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Radolfzell+am+Bodensee/@47.752138,8.9393425,13z/data=!4m9!2m8!5m6!5m4!1s2019-09-05!2i2!4m1!1i1!10e1!6e3">Radolfzell</a>
+					<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/hotels+in+Radolfzell+am+Bodensee/@47.752138,8.9393425,13z/data=!4m9!2m8!5m6!5m4!1s2019-09-05!2i2!4m1!1i1!10e1!6e3">Radolfzell</a>
 				</strong>
 				<strong>15 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Singen/@47.7607077,8.8457983,13.26z/data=!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Singen</a>
+					<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/hotels+in+Singen/@47.7607077,8.8457983,13.26z/data=!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Singen</a>
 				</strong>
 				<strong>30 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Meersburg/@47.6866527,9.2731655,14z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Meersburg (Ferry)</a>
+					<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/hotels+in+Meersburg/@47.6866527,9.2731655,14z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Meersburg (Ferry)</a>
 				</strong>
 				<strong>35 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+Schaffhausen,+Switzerland/@47.7011403,8.6501567,13z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Schaffhausen (CH)</a>
+					<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/hotels+in+Schaffhausen,+Switzerland/@47.7011403,8.6501567,13z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Schaffhausen (CH)</a>
 				</strong>
 				<strong>49 Minutes</strong>
 			</li>
 			<li>
 				<strong>
-					<a target="_blank" href="https://www.google.com/maps/search/hotels+in+%C3%9Cberlingen/@47.7784625,9.1544277,13z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Überlingen</a>
+					<a target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/hotels+in+%C3%9Cberlingen/@47.7784625,9.1544277,13z/data=!3m1!4b1!4m7!2m6!5m5!5m4!1s2019-09-05!2i2!4m1!1i1">Überlingen</a>
 				</strong>
 				<strong>1 Hour</strong>
 			</li>
 			</ul></p>
 			</section>
 			</VenueSection>
-			<BodenseeSponsors />
+			<BodenseeSponsors sponsors={({community: event.commSponsors, gold: event.goldSponsors, silver: event.silverSponsors, giveaway: event.giveawaySponsors, bronze: event.bronzeSponsors, organizer: event.organizer})}/>
 		</PageWrapper>
 	</Layout>
 )};

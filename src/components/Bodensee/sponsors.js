@@ -1,7 +1,5 @@
 import React from "react"
 import styled from "styled-components"
-// import { Row, Column } from 'hedron';
-import { StaticQuery, graphql } from "gatsby"
 
 const Section = styled.section`
   text-align: center;
@@ -29,81 +27,72 @@ const Section = styled.section`
   }
 `
 
-export default () => (
-  <StaticQuery
-    query={graphql`
-      fragment Image on GraphCMS_Sponsor {
-        logo {
-          url
-        }
-        url
-      }
-
-      {
-        gcms {
-          graphcms: sponsor(where: { id: "cjwkoabnzbfk70910uivr7vv5" }) {
-            ...Image
-          }
-          appsync: sponsor(where: { id: "cjwko0z8kb1y10941qkjv5e2o" }) {
-            ...Image
-          }
-          gatsby: sponsor(where: { id: "cjy9n99trdstw0941hlf0qy6u" }) {
-            ...Image
-          }
-          holidaycheck: sponsor(where: { id: "cjyppadsyerpo0941ewocuz8h" }) {
-            ...Image
-          }
-          jetbrains: sponsor(where: { id: "cjy9nldk3lybd0d53tbvf34fl" }) {
-            ...Image
-          }
-          honeypot: sponsor(where: { id: "cjuvfq9gpe7uh0c15pf4zkzzw" }) {
-            ...Image
-          }
-          prisma: sponsor(where: { id: "cjuvfqtbee8ga0c15nx7youyo" }) {
-            ...Image
-          }
-        }
-      }
-    `}
-    render={data => (
+export default ({sponsors}) => (
       <Section>
         <section>
           <h2>Organized by</h2>
-          <a href={data.gcms.graphcms.url} target="_blank">
-          <img style={{maxWidth: 250}} src={data.gcms.graphcms.logo.url} alt="GraphCMS logo"
-          className="padding" />
-          </a>
-          <a href={data.gcms.honeypot.url} target="_blank">
-          <img
-            src={data.gcms.honeypot.logo.url}
-            alt="honeypot logo"
-          />
-          </a>
+          {sponsors.organizer.map((sponsorship, index) => {
+            return (
+              <>
+              <a href={sponsorship.sponsor.url} rel="noopener noreferrer" target="_blank">
+                <img style={{maxWidth: 200, maxHeight: 200}} src={sponsorship.sponsor.logo.url} alt={sponsorship.sponsor.url} className="padding" />
+              </a>
+              <br/>
+              </>
+            )
+          })}
         </section>
         <section>
           <h2>Gold Sponsors</h2>
-          <a href={data.gcms.appsync.url} target="_blank">
-            <img src={data.gcms.appsync.logo.url} alt="AWS App-Sync logo" />
-          </a>
+          {sponsors.gold.map((sponsorship, index) => {
+            return (
+              <>
+              <a href={sponsorship.sponsor.url} rel="noopener noreferrer" target="_blank">
+                <img style={{maxWidth: 200, maxHeight: 200}} src={sponsorship.sponsor.logo.url} alt={sponsorship.sponsor.url} className="padding" />
+              </a>
+              <br/>
+              </>
+            )
+          })}
         </section>
         <section>
           <h2>Bronze Sponsors</h2>
-          <a href={data.gcms.gatsby.url} target="_blank"><img src={data.gcms.gatsby.logo.url} alt="GatsbyJs logo" style={{maxWidth: 335}}/></a><br/>
-          <a href={data.gcms.holidaycheck.url} target="_blank"><img src={data.gcms.holidaycheck.logo.url} alt="HolidayCheck logo" /></a>
+          {sponsors.bronze.map((sponsorship, index) => {
+            return (
+              <>
+              <a href={sponsorship.sponsor.url} rel="noopener noreferrer" target="_blank">
+                <img style={{maxWidth: 200, maxHeight: 200}} src={sponsorship.sponsor.logo.url} alt={sponsorship.sponsor.url} className="padding" />
+              </a>
+              <br/>
+              </>
+            )
+          })}
         </section>
         <section>
           <h2>Giveaway Sponsor</h2>
-          <a href={data.gcms.jetbrains.url} target="_blank">
-            <img src={data.gcms.jetbrains.logo.url} alt="Jet Brains logo" style={{maxWidth: 175}}/>
-          </a>
+          {sponsors.giveaway.map((sponsorship, index) => {
+            return (
+              <>
+              <a href={sponsorship.sponsor.url} rel="noopener noreferrer" target="_blank">
+                <img style={{maxWidth: 200, maxHeight: 200}} src={sponsorship.sponsor.logo.url} alt={sponsorship.sponsor.url} className="padding" />
+              </a>
+              <br/>
+              </>
+            )
+          })}
         </section>
         <section>
           <h2>Community Sponsors</h2>
-          <a href={data.gcms.prisma.url} target="_blank">
-          <img src={data.gcms.prisma.logo.url} alt="prisma logo" />
-          </a>
+          {sponsors.community.map((sponsorship, index) => {
+            return (
+              <>
+              <a href={sponsorship.sponsor.url} rel="noopener noreferrer" target="_blank">
+                <img style={{maxWidth: 200, maxHeight: 200}} src={sponsorship.sponsor.logo.url} alt={sponsorship.sponsor.url} className="padding" />
+              </a>
+              <br/>
+              </>
+            )
+          })}
         </section>
       </Section>
-    )}
-  />
-)
+    )
