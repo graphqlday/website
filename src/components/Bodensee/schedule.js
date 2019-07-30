@@ -5,6 +5,16 @@ import { Row, Column } from 'hedron';
 import { graphql, StaticQuery } from 'gatsby';
 import dateFormat from 'dateformat';
 
+const CardGrid = styled.div`
+	/* display: grid;
+	grid-auto-columns: auto;
+	grid-template-rows: repeat(auto-fit, minmax(233rem, 1fr));
+	grid-gap: 1rem 5rem;
+	grid-auto-flow: column; */
+	/* columns: 33rem;
+	break-before: column; */
+`
+
 const Title = styled.div`
 	max-width: 1140px;
 	margin: 0 auto;
@@ -33,8 +43,12 @@ const ScheduleRow = styled(Row)`
 
 const Schedule = styled.div`
 	display: flex;
+	/* flex: 0 1 33rem; */
+	/* max-width: 33rem; */
 	align-items: center;
-	margin-bottom: 16px;
+	margin: 1rem;
+	min-width: 33rem;
+	float: left;
 `;
 
 const Time = styled.time`
@@ -90,15 +104,7 @@ export default ({ data }) => (
 		query={graphql`
 			query {
 				gcms {
-					beforeNoon: bodenseeSchedules(first: 8, orderBy: createdAt_ASC) {
-						time
-						icon {
-							url
-						}
-						item
-						subitem
-					}
-					afterNoon: bodenseeSchedules(last: 8, orderBy: createdAt_ASC) {
+					bodenseeSchedules(orderBy: time_ASC) {
 						time
 						icon {
 							url
@@ -109,7 +115,13 @@ export default ({ data }) => (
 				}
 			}
 		`}
-		render={data => (
+		render={data => {
+			const split = 9
+			const firstHalf = [...data.gcms.bodenseeSchedules].slice(0,split)
+			const lastHalf = [...data.gcms.bodenseeSchedules].slice(split)
+
+			console.log(firstHalf)
+			return (
 			<React.Fragment>
 				<Title>
 					<h2>SCHEDULE</h2>
@@ -118,48 +130,48 @@ export default ({ data }) => (
 					</p>
 				</Title>
 				<ScheduleRow>
-					<Column lg={6} md={12}>
-						{data.gcms.beforeNoon.map((schedule, index) => (
-							<Schedule key={index}>
-								<Time dateTime={schedule.time}>
-									{dateFormat(new Date(schedule.time[0]), 'HH:MM')}
-								</Time>
-								<Card>
-									{schedule.icon ? (
-										<img src={schedule.icon.url} alt="schedule icon" />
-									) : (
-										<div className="placeholder" />
-									)}
-									<div className="content">
-										<h3>{schedule.item}</h3>
-										<p className="subitem">{schedule.subitem}</p>
-									</div>
-								</Card>
-							</Schedule>
-						))}
-					</Column>
-					<Column lg={6} md={12}>
-						{data.gcms.afterNoon.map((schedule, index) => (
-							<Schedule key={index}>
-								<Time dateTime={schedule.time}>
-									{dateFormat(new Date(schedule.time[0]), 'HH:MM')}
-								</Time>
-								<Card>
-									{schedule.icon ? (
-										<img src={schedule.icon.url} alt="schedule icon" />
-									) : (
-										<div className="placeholder" />
-									)}
-									<div className="content">
-										<h3>{schedule.item}</h3>
-										<p className="subitem">{schedule.subitem}</p>
-									</div>
-								</Card>
-							</Schedule>
-						))}
-					</Column>
+				<Column lg={6} md={12}>
+				{firstHalf.map((schedule, index) => (
+					<Schedule key={index}>
+						<Time dateTime={schedule.time}>
+							{dateFormat(new Date(schedule.time), 'HH:MM')}
+						</Time>
+						<Card>
+							{schedule.icon ? (
+								<img src={schedule.icon.url} alt="schedule icon" />
+							) : (
+								<div className="placeholder" />
+							)}
+							<div className="content">
+								<h3>{schedule.item}</h3>
+								<p className="subitem">{schedule.subitem}</p>
+							</div>
+						</Card>
+					</Schedule>
+				))}
+			</Column>
+			<Column lg={6} md={12}>
+				{lastHalf.map((schedule, index) => (
+					<Schedule key={index}>
+						<Time dateTime={schedule.time}>
+							{dateFormat(new Date(schedule.time), 'HH:MM')}
+						</Time>
+						<Card>
+							{schedule.icon ? (
+								<img src={schedule.icon.url} alt="schedule icon" />
+							) : (
+								<div className="placeholder" />
+							)}
+							<div className="content">
+								<h3>{schedule.item}</h3>
+								<p className="subitem">{schedule.subitem}</p>
+							</div>
+						</Card>
+					</Schedule>
+				))}
+			</Column>
 				</ScheduleRow>
 			</React.Fragment>
-		)}
+		)}}
 	/>
 );

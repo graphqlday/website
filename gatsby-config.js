@@ -14,7 +14,8 @@ module.exports = {
 				fieldName: 'gcms',
 				// Url to query from
 				url:
-					'https://api-euwest.graphcms.com/v1/cjubekk561n9a01gh4sievp2i/master'
+					// 'https://api-euwest.graphcms.com/v1/cjubekk561n9a01gh4sievp2i/master'
+					'https://api-euwest.graphcms.com/v1/cjubekk561n9a01gh4sievp2i/changeDateTime'
 			}
 		},
 		{
