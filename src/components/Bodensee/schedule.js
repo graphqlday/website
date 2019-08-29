@@ -150,6 +150,7 @@ export default ({ data }) => (
                 </Schedule>
               ))}
             </Column>
+
             <Column lg={6} md={12}>
               {lastHalf.map((schedule, index) => (
                 <Schedule key={index}>
