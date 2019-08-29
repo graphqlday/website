@@ -125,9 +125,6 @@ export default ({ data }) => (
         <React.Fragment>
           <Title>
             <h2>SCHEDULE</h2>
-            <p className="subtitle">
-              Optional GraphQL Workshop, Thursday Sept 5th. More details soon.
-            </p>
           </Title>
           <ScheduleRow>
             <Column lg={6} md={12}>
