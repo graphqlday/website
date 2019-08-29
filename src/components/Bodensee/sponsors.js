@@ -70,14 +70,15 @@ export default () => (
         <section>
           <h2>Organized by</h2>
           <a href={data.gcms.graphcms.url} target="_blank">
-          <img style={{maxWidth: 250}} src={data.gcms.graphcms.logo.url} alt="GraphCMS logo"
-          className="padding" />
+            <img
+              style={{ maxWidth: 250 }}
+              src={data.gcms.graphcms.logo.url}
+              alt="GraphCMS logo"
+              className="padding"
+            />
           </a>
           <a href={data.gcms.honeypot.url} target="_blank">
-          <img
-            src={data.gcms.honeypot.logo.url}
-            alt="honeypot logo"
-          />
+            <img src={data.gcms.honeypot.logo.url} alt="honeypot logo" />
           </a>
         </section>
         <section>
@@ -88,19 +89,30 @@ export default () => (
         </section>
         <section>
           <h2>Bronze Sponsors</h2>
-          <a href={data.gcms.gatsby.url} target="_blank"><img src={data.gcms.gatsby.logo.url} alt="GatsbyJs logo" style={{maxWidth: 335}}/></a><br/>
-          <a href={data.gcms.holidaycheck.url} target="_blank"><img src={data.gcms.holidaycheck.logo.url} alt="HolidayCheck logo" /></a>
+          <a href={data.gcms.gatsby.url} target="_blank">
+            <img
+              src={data.gcms.gatsby.logo.url}
+              alt="GatsbyJs logo"
+              style={{ maxWidth: 335 }}
+            />
+          </a>
+          <br />
+          {/* <a href={data.gcms.holidaycheck.url} target="_blank"><img src={data.gcms.holidaycheck.logo.url} alt="HolidayCheck logo" /></a> */}
         </section>
         <section>
           <h2>Giveaway Sponsor</h2>
           <a href={data.gcms.jetbrains.url} target="_blank">
-            <img src={data.gcms.jetbrains.logo.url} alt="Jet Brains logo" style={{maxWidth: 175}}/>
+            <img
+              src={data.gcms.jetbrains.logo.url}
+              alt="Jet Brains logo"
+              style={{ maxWidth: 175 }}
+            />
           </a>
         </section>
         <section>
           <h2>Community Sponsors</h2>
           <a href={data.gcms.prisma.url} target="_blank">
-          <img src={data.gcms.prisma.logo.url} alt="prisma logo" />
+            <img src={data.gcms.prisma.logo.url} alt="prisma logo" />
           </a>
         </section>
       </Section>
