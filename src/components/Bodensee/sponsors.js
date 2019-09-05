@@ -50,7 +50,7 @@ export default () => (
           gatsby: sponsor(where: { id: "cjy9n99trdstw0941hlf0qy6u" }) {
             ...Image
           }
-          holidaycheck: sponsor(where: { id: "cjyppadsyerpo0941ewocuz8h" }) {
+          holidaycheck: sponsor(where: { id: "ck06omwghaaua0b20cae0j5ov" }) {
             ...Image
           }
           jetbrains: sponsor(where: { id: "cjy9nldk3lybd0d53tbvf34fl" }) {
@@ -97,7 +97,13 @@ export default () => (
             />
           </a>
           <br />
-          {/* <a href={data.gcms.holidaycheck.url} target="_blank"><img src={data.gcms.holidaycheck.logo.url} alt="HolidayCheck logo" /></a> */}
+          <a href={data.gcms.holidaycheck.url} target="_blank">
+            <img
+              src={data.gcms.holidaycheck.logo.url}
+              alt="HolidayCheck logo"
+              style={{ marginTop: 32 }}
+            />
+          </a>
         </section>
         <section>
           <h2>Giveaway Sponsor</h2>
